@@ -5,7 +5,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 // core components
 import AuthNavbar from "components/Navbars/AuthNavbar.js";
-import AuthFooter from "components/Footers/AuthFooter.js";
 
 import routes from "routes.js";
 
@@ -58,7 +57,7 @@ const Auth = () => {
           <Redirect from="*" to="/auth/login" />
         </Switch>
       </div>
-      <AuthFooter />
+      {/* <AuthFooter /> */}
     </>
   );
 };

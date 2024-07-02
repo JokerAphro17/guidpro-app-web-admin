@@ -1,7 +1,7 @@
 {
-  "name": "argon-dashboard-material-pro-ui",
+  "name": "guid-pro",
   "version": "1.0.0",
-  "author": "Creative Tim",
+  "author": "ILBOUDO SOULEYMANE",
   "license": "See license in https://www.creative-tim.com/license",
   "description": "Material UI version of Argon Dashboard PRO React by Creative Tim",
   "homepage": "https://demos.creative-tim.com/argon-dashboard-pro-material-ui/#/admin/dashboard",
@@ -34,10 +34,12 @@
     "@material-ui/data-grid": "4.0.0-alpha.22",
     "@material-ui/icons": "4.11.2",
     "@material-ui/lab": "4.0.0-alpha.57",
+    "axios": "^1.7.2",
     "bootstrap": "4.6.0",
     "chart.js": "2.9.4",
     "clsx": "1.1.1",
     "dropzone": "5.7.6",
+    "formik": "^2.4.6",
     "jss-rtl": "0.3.0",
     "list.js": "2.3.1",
     "moment": "2.29.1",
@@ -59,7 +61,10 @@
     "react-perfect-scrollbar": "1.5.8",
     "react-router-dom": "5.2.0",
     "react-scripts": "4.0.3",
-    "react-to-print": "2.12.3"
+    "react-to-print": "2.12.3",
+    "react-toastify": "^10.0.5",
+    "sweetalert2": "^11.12.1",
+    "yup": "^1.4.0"
   },
   "eslintConfig": {
     "extends": [

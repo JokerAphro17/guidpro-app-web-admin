@@ -6,7 +6,6 @@ import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import CardHeader from "@material-ui/core/CardHeader";
 import Checkbox from "@material-ui/core/Checkbox";
 import Container from "@material-ui/core/Container";
 import FilledInput from "@material-ui/core/FilledInput";
@@ -30,13 +29,13 @@ function Login() {
   const classes = { ...useStyles(), ...useStylesButtons() };
   const theme = useTheme();
   return (
-    <>
+    <>  
       <AuthHeader
-        title="Welcome!"
-        description="Use these awesome forms to login or create new account in your project for free."
+        title="Bienvenue!"
+        description="Connectez-vous pour continuer"
       />
       {/* Page content */}
-      <Container
+      <Container  
         component={Box}
         maxWidth="xl"
         marginTop="-8rem"
@@ -47,7 +46,7 @@ function Login() {
         <Box component={Grid} container justifyContent="center">
           <Grid item xs={12} lg={5} md={7}>
             <Card classes={{ root: classes.cardRoot }}>
-              <CardHeader
+              {/* <CardHeader
                 className={classes.cardHeader}
                 title={
                   <Box
@@ -112,7 +111,7 @@ function Login() {
                     </Button>
                   </Box>
                 }
-              ></CardHeader>
+              ></CardHeader> */}
               <CardContent classes={{ root: classes.cardContent }}>
                 <Box
                   color={theme.palette.gray[600]}
@@ -122,7 +121,7 @@ function Login() {
                   fontSize="1rem"
                 >
                   <Box fontSize="80%" fontWeight="400" component="small">
-                    Or sign in with credentials
+                    Rentrez vos identifiants
                   </Box>
                 </Box>
                 <FormControl
@@ -151,7 +150,7 @@ function Login() {
                   <FilledInput
                     autoComplete="off"
                     type="password"
-                    placeholder="Password"
+                    placeholder="Mot de passe"
                     startAdornment={
                       <InputAdornment position="start">
                         <Lock />
@@ -178,20 +177,20 @@ function Login() {
                     variant="contained"
                     classes={{ root: classes.buttonContainedInfo }}
                   >
-                    Sign in
+                    Connexion
                   </Button>
                 </Box>
               </CardContent>
             </Card>
             <Grid container component={Box} marginTop="1rem">
               <Grid item xs={6} component={Box} textAlign="left">
-                <a
+                {/* <a
                   href="#admui"
                   onClick={(e) => e.preventDefault()}
                   className={classes.footerLinks}
                 >
                   Forgot password
-                </a>
+                </a> */}
               </Grid>
               <Grid item xs={6} component={Box} textAlign="right">
                 <a
@@ -199,7 +198,7 @@ function Login() {
                   onClick={(e) => e.preventDefault()}
                   className={classes.footerLinks}
                 >
-                  Create new account
+                  Créer un compte
                 </a>
               </Grid>
             </Grid>

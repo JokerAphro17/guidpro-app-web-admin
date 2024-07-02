@@ -22,20 +22,24 @@ import AdminLayout from "layouts/Admin.js";
 import RtlLayout from "layouts/RTL.js";
 import AuthLayout from "layouts/Auth.js";
 import Index from "views/Index.js";
+import { AuthProvider } from "utils/context/authContext";
 
 ReactDOM.render(
+  <AuthProvider>
   <ThemeProvider theme={theme}>
     {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
     <CssBaseline />
     <BrowserRouter>
       <Switch>
-        <Route path="/index" render={(props) => <Index {...props} />} />
         <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
+        <Route path="/index" render={(props) => <Index {...props} />} />
         <Route path="/rtl" render={(props) => <RtlLayout {...props} />} />
         <Route path="/auth" render={(props) => <AuthLayout {...props} />} />
+        <Route path="/" render={(props) => <AdminLayout {...props} />} />
         <Redirect from="*" to="/index" />
       </Switch>
     </BrowserRouter>
-  </ThemeProvider>,
+  </ThemeProvider>
+  </AuthProvider>,
   document.querySelector("#root")
 );

@@ -6,7 +6,6 @@ import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import CardHeader from "@material-ui/core/CardHeader";
 import Checkbox from "@material-ui/core/Checkbox";
 import Container from "@material-ui/core/Container";
 import FilledInput from "@material-ui/core/FilledInput";
@@ -33,8 +32,8 @@ function Register() {
   return (
     <>
       <AuthHeader
-        title="Create an account"
-        description="Use these awesome forms to login or create new account in your project for free."
+        title="Nouveau sur Guid Pro?"
+        description="Créez un compte pour continuer, c'est gratuit."
       />
       {/* Page content */}
       <Container
@@ -48,72 +47,7 @@ function Register() {
         <Box component={Grid} container justifyContent="center">
           <Grid item xs={12} lg={6} md={8}>
             <Card classes={{ root: classes.cardRoot }}>
-              <CardHeader
-                className={classes.cardHeader}
-                title={
-                  <Box
-                    fontSize="80%"
-                    fontWeight="400"
-                    component="small"
-                    color={theme.palette.gray[600]}
-                  >
-                    Sign up with
-                  </Box>
-                }
-                titleTypographyProps={{
-                  component: Box,
-                  textAlign: "center",
-                  marginBottom: "1rem!important",
-                  marginTop: ".5rem!important",
-                  fontSize: "1rem!important",
-                }}
-                subheader={
-                  <Box textAlign="center">
-                    <Box
-                      component={Button}
-                      variant="contained"
-                      marginRight="1rem!important"
-                      classes={{ root: classes.buttonRoot }}
-                    >
-                      <Box component="span" marginRight="4px">
-                        <Box
-                          alt="..."
-                          component="img"
-                          width="20px"
-                          className={classes.buttonImg}
-                          src={
-                            require("assets/img/icons/common/github.svg")
-                              .default
-                          }
-                        ></Box>
-                      </Box>
-                      <Box component="span" marginLeft=".75rem">
-                        Github
-                      </Box>
-                    </Box>
-                    <Button
-                      variant="contained"
-                      classes={{ root: classes.buttonRoot }}
-                    >
-                      <Box component="span" marginRight="4px">
-                        <Box
-                          alt="..."
-                          component="img"
-                          width="20px"
-                          className={classes.buttonImg}
-                          src={
-                            require("assets/img/icons/common/google.svg")
-                              .default
-                          }
-                        ></Box>
-                      </Box>
-                      <Box component="span" marginLeft=".75rem">
-                        Google
-                      </Box>
-                    </Button>
-                  </Box>
-                }
-              ></CardHeader>
+          
               <CardContent classes={{ root: classes.cardContent }}>
                 <Box
                   color={theme.palette.gray[600]}
@@ -123,7 +57,7 @@ function Register() {
                   fontSize="1rem"
                 >
                   <Box fontSize="80%" fontWeight="400" component="small">
-                    Or sign up with credentials
+                    Rempissez les champs suivants pour créer un compte
                   </Box>
                 </Box>
                 <FormControl
@@ -135,7 +69,7 @@ function Register() {
                   <FilledInput
                     autoComplete="off"
                     type="text"
-                    placeholder="Name"
+                    placeholder="Nom complet"
                     startAdornment={
                       <InputAdornment position="start">
                         <School />
@@ -169,7 +103,7 @@ function Register() {
                   <FilledInput
                     autoComplete="off"
                     type="password"
-                    placeholder="Password"
+                    placeholder="Mot de passe"
                     startAdornment={
                       <InputAdornment position="start">
                         <Lock />
@@ -177,35 +111,36 @@ function Register() {
                     }
                   />
                 </FormControl>
-                <Box
-                  fontStyle="italic"
-                  fontSize="1rem"
-                  color={theme.palette.gray[600]}
-                  marginBottom=".5rem"
+                <FormControl
+                  variant="filled"
+                  component={Box}
+                  width="100%"
+                  marginBottom="1.5rem!important"
                 >
-                  <Box component="small" fontSize="80%">
-                    password strength:{" "}
-                    <Box
-                      component="span"
-                      fontWeight="700"
-                      color={theme.palette.success.main}
-                    >
-                      strong
-                    </Box>
-                  </Box>
-                </Box>
+                  <FilledInput
+                    autoComplete="off"
+                    type="password"
+                    placeholder="Confirmer le mot de passe"
+                    startAdornment={
+                      <InputAdornment position="start">
+                        <Lock />
+                      </InputAdornment>
+                    }
+                  />
+                </FormControl>
+               
                 <FormControlLabel
                   value="end"
                   control={<Checkbox color="primary" />}
                   label={
                     <>
-                      I agree with the{" "}
+                      J'accepte les{" "}
                       <Box
                         color={theme.palette.primary.main}
                         component="a"
                         textDecoration="none"
                       >
-                        Privacy Policy
+                        Conditions d'utilisation
                       </Box>
                     </>
                   }
@@ -224,7 +159,7 @@ function Register() {
                     variant="contained"
                     classes={{ root: classes.buttonContainedInfo }}
                   >
-                    Create account
+                    Créer un compte
                   </Button>
                 </Box>
               </CardContent>

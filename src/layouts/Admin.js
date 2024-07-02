@@ -15,6 +15,7 @@ import Sidebar from "components/Sidebar/Sidebar.js";
 import routes from "routes.js";
 
 import componentStyles from "assets/theme/layouts/admin.js";
+import AuthGuard from "routers/components/AuthGuard";
 
 const useStyles = makeStyles(componentStyles);
 
@@ -38,11 +39,15 @@ const Admin = () => {
       }
       if (prop.layout === "/admin") {
         return (
-          <Route
+          <AuthGuard>
+             <Route
             path={prop.layout + prop.path}
             component={prop.component}
             key={key}
           />
+          </AuthGuard>
+         
+
         );
       } else {
         return null;
