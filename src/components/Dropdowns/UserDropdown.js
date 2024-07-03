@@ -11,13 +11,13 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Typography from "@material-ui/core/Typography";
 // @material-ui/icons components
 import DirectionsRun from "@material-ui/icons/DirectionsRun";
-import EventNote from "@material-ui/icons/EventNote";
 import LiveHelp from "@material-ui/icons/LiveHelp";
 import Person from "@material-ui/icons/Person";
 import Settings from "@material-ui/icons/Settings";
 
 // core components
 import componentStyles from "assets/theme/components/dropdowns/user-dropdown.js";
+import useAuth from "utils/hooks/useAuth";
 
 const useStyles = makeStyles(componentStyles);
 
@@ -34,6 +34,12 @@ export default function UserDropdown() {
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
+  const auth = useAuth();
+  const { user } = auth;
+
+  const handleLogout = () => {
+    auth.signout();
+  }
 
   const menuId = "dropdowns-user-dropdown-id";
   const renderMenu = (
@@ -51,7 +57,7 @@ export default function UserDropdown() {
         component="h6"
         classes={{ root: classes.menuTitle }}
       >
-        Welcome!
+        Bienvenue!
       </Typography>
       <Box
         display="flex!important"
@@ -65,7 +71,7 @@ export default function UserDropdown() {
           height="1.25rem!important"
           marginRight="1rem"
         />
-        <span>My profile</span>
+        <span>Mon profile</span>
       </Box>
       <Box
         display="flex!important"
@@ -79,22 +85,9 @@ export default function UserDropdown() {
           height="1.25rem!important"
           marginRight="1rem"
         />
-        <span>Settings</span>
+        <span>Paramettre</span>
       </Box>
-      <Box
-        display="flex!important"
-        alignItems="center!important"
-        component={MenuItem}
-        onClick={handleMenuClose}
-      >
-        <Box
-          component={EventNote}
-          width="1.25rem!important"
-          height="1.25rem!important"
-          marginRight="1rem"
-        />
-        <span>Activity</span>
-      </Box>
+      
       <Box
         display="flex!important"
         alignItems="center!important"
@@ -114,13 +107,14 @@ export default function UserDropdown() {
         display="flex!important"
         alignItems="center!important"
         component={MenuItem}
-        onClick={handleMenuClose}
+        onClick={handleLogout}
       >
         <Box
           component={DirectionsRun}
           width="1.25rem!important"
           height="1.25rem!important"
           marginRight="1rem"
+         
         />
         <span>Logout</span>
       </Box>
@@ -143,12 +137,14 @@ export default function UserDropdown() {
       >
         <Avatar
           alt="..."
-          src={require("assets/img/theme/team-4-800x800.jpg").default}
+     
           classes={{
             root: classes.avatarRoot,
           }}
         />
-        <Hidden mdDown>John Snow</Hidden>
+        <Hidden mdDown>
+            {user && user.lastName }
+        </Hidden>
       </Button>
       {renderMenu}
     </>

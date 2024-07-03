@@ -9,13 +9,12 @@ import Container from "@material-ui/core/Container";
 // core components
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import AdminNavbarAlternative from "components/Navbars/AdminNavbarAlternative.js";
-import AdminFooter from "components/Footers/AdminFooter.js";
+// import AdminFooter from "components/Footers/AdminFooter.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 
 import routes from "routes.js";
 
 import componentStyles from "assets/theme/layouts/admin.js";
-import AuthGuard from "routers/components/AuthGuard";
 
 const useStyles = makeStyles(componentStyles);
 
@@ -39,13 +38,11 @@ const Admin = () => {
       }
       if (prop.layout === "/admin") {
         return (
-          <AuthGuard>
              <Route
             path={prop.layout + prop.path}
             component={prop.component}
             key={key}
           />
-          </AuthGuard>
          
 
         );
@@ -86,7 +83,7 @@ const Admin = () => {
             component={Box}
             classes={{ root: classes.containerRoot }}
           >
-            <AdminFooter />
+            {/* <AdminFooter /> */}
           </Container>
         </Box>
       </Box>

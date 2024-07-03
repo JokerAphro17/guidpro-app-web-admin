@@ -6,7 +6,9 @@ const AuthGuard = ({ children }) => {
   const { user } = useAuth();
   const location = useLocation();
 
-  if (!user?.token) {
+  console.log('token', user?.token);
+
+  if (!user) {
     return <Redirect to={{ pathname: "/auth/login", state: { from: location.pathname } }} />;
   }
 

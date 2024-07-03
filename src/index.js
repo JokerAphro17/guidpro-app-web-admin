@@ -36,7 +36,7 @@ ReactDOM.render(
         <Route path="/rtl" render={(props) => <RtlLayout {...props} />} />
         <Route path="/auth" render={(props) => <AuthLayout {...props} />} />
         <Route path="/" render={(props) => <AdminLayout {...props} />} />
-        <Redirect from="*" to="/index" />
+        <Redirect from="*" to="/admin/index" />
       </Switch>
     </BrowserRouter>
   </ThemeProvider>

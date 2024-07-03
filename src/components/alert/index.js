@@ -1,4 +1,4 @@
-import Swal, {SweetAlertIcon, SweetAlertResult} from "sweetalert2";
+import Swal from "sweetalert2";
 
 export const alertPending = (message = "Chargement en cours") => {
     Swal.fire({

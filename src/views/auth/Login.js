@@ -16,11 +16,18 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 // @material-ui/icons components
 import Email from "@material-ui/icons/Email";
 import Lock from "@material-ui/icons/Lock";
-
+import * as yup from "yup";
 // core components
 import AuthHeader from "components/Headers/AuthHeader.js";
 import componentStyles from "assets/theme/views/auth/login.js";
 import componentStylesButtons from "assets/theme/components/button.js";
+import { useFormik } from "formik";
+import { signInRequest } from "api/request";
+import { alertPending } from "components/alert";
+import { alertClosed } from "components/alert";
+import useAuth from "utils/hooks/useAuth";
+import { alertNotification } from "components/alert";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const useStyles = makeStyles(componentStyles);
 const useStylesButtons = makeStyles(componentStylesButtons);
@@ -28,6 +35,72 @@ const useStylesButtons = makeStyles(componentStylesButtons);
 function Login() {
   const classes = { ...useStyles(), ...useStylesButtons() };
   const theme = useTheme();
+  const auth = useAuth();
+  const history = useHistory();
+
+
+
+  
+  const schema = yup.object().shape({
+    email: yup.string().email("L'email est invalide").required("L'email est requis"),
+    password: yup.string().required("Le mot de passe est requis"),
+  });
+
+  const formik = useFormik({
+    validationSchema: schema,
+    enableReinitialize: true,
+    initialValues: {
+      email: '',
+      password: ''
+    },
+    onSubmit: values => {
+      handleLogin(values);
+    },
+  });
+
+
+  const handleLogin = async (values) => {
+    try {
+      alertPending("Connexion en cours", "Veuillez patienter...");
+      const data = {
+        username: values.email,
+        password: values.password
+      }
+      alertClosed();
+
+      const response = await signInRequest(data);
+      const userData = response.data?.data;
+      console.log("userData", userData);
+
+      const user = {
+        ...userData?.user,
+        ...userData?.tokens,
+      }
+      if (userData) {
+      auth.signin(user, 
+          () => {
+            history.push("/admin/dashboard");
+          }
+        );
+      }
+
+
+      console.log(response);
+
+    } catch (error) {
+      alertClosed();
+      const { message } = error;
+      if (message) {
+        alertNotification("error", message);
+      }
+      else {
+        alertNotification("error", "Une erreur s'est produite, veuillez réessayer");
+      }
+    }
+  }
+
+
+
   return (
     <>  
       <AuthHeader
@@ -133,6 +206,11 @@ function Login() {
                   <FilledInput
                     autoComplete="off"
                     type="email"
+                    name="email"
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.email && Boolean(formik.errors.email)}
                     placeholder="Email"
                     startAdornment={
                       <InputAdornment position="start">
@@ -150,6 +228,12 @@ function Login() {
                   <FilledInput
                     autoComplete="off"
                     type="password"
+                    name="password"
+                    value={formik.values.password}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.password && Boolean(formik.errors.password)}
+
                     placeholder="Mot de passe"
                     startAdornment={
                       <InputAdornment position="start">
@@ -175,6 +259,9 @@ function Login() {
                 >
                   <Button
                     variant="contained"
+
+                    onClick={() => formik.handleSubmit()}
+
                     classes={{ root: classes.buttonContainedInfo }}
                   >
                     Connexion

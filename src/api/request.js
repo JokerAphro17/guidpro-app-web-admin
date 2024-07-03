@@ -4,7 +4,7 @@ const HTTP_CLIENT = apiClient;
 
 export const signInRequest = (params) =>
     new Promise((resolve, reject) => {
-        HTTP_CLIENT.post("auth/login", params)
+        HTTP_CLIENT.post("auth/signin", params)
             .then((response) => {
                 resolve(response);
             })
@@ -16,7 +16,7 @@ export const signInRequest = (params) =>
 
 export const signUpRequest = (params) =>
     new Promise((resolve, reject) => {
-        HTTP_CLIENT.post("auth/register", params)
+        HTTP_CLIENT.post("auth/signup", params)
             .then((response) => {
                 resolve(response);
             })

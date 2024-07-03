@@ -48,6 +48,7 @@ import PermMedia from "@material-ui/icons/PermMedia";
 import PieChart from "@material-ui/icons/PieChart";
 import Toc from "@material-ui/icons/Toc";
 import WidgetsIcon from "@material-ui/icons/Widgets";
+import ArticleList from "views/artciles/ArticleList";
 
 var routes = [
   {
@@ -71,6 +72,23 @@ var routes = [
         component: AlternativeDashboard,
         layout: "/admin",
       },
+    ],
+  },
+  {
+    collapse: true,
+    name: "Articles",
+    icon: House,
+    iconColor: "Primary",
+    state: "articlesCollapse",
+    views: [
+      {
+        path: "/articles",
+        name: "Listes",
+        miniName: "A",
+        component: ArticleList,
+        layout: "/admin",
+      },  
+
     ],
   },
   {
