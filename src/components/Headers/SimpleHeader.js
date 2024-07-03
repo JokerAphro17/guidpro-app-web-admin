@@ -19,7 +19,7 @@ import componentStyles from "assets/theme/components/headers/simple-header.js";
 
 const useStyles = makeStyles(componentStyles);
 
-const SimpleHeader = ({ section, subsection }) => {
+const SimpleHeader = ({ section, subsection, onRightButtonClick, rightButton }) => {
   const classes = useStyles();
   return (
     <>
@@ -86,20 +86,23 @@ const SimpleHeader = ({ section, subsection }) => {
               </Breadcrumbs>
             </Grid>
             <Grid item xs={5} lg={6} component={Box} textAlign="right">
+              {rightButton && (
               <Button
                 variant="contained"
                 size="small"
                 className={classes.buttonRoot}
+                onClick={onRightButtonClick}
               >
-                New
+                {rightButton}
               </Button>
-              <Button
+              )}
+              {/* <Button
                 variant="contained"
                 size="small"
                 className={classes.buttonRoot}
               >
-                Filters
-              </Button>
+                Fi
+              </Button> */}
             </Grid>
           </Grid>
         </Container>

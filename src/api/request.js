@@ -25,3 +25,56 @@ export const signUpRequest = (params) =>
                 reject(message);
             });
     });
+
+
+    // articles requests / as advice
+
+export const getArticlesRequest = (params) => 
+    new Promise((resolve, reject) => {
+        HTTP_CLIENT.get("advices", { params })
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((error) => {
+                const message = handlingErrors(error);
+                reject(message);
+            });
+    });
+
+export const getArticleRequest = (id) =>
+    new Promise((resolve, reject) => {
+        HTTP_CLIENT.get(`advices/${id}`)
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((error) => {
+                const message = handlingErrors(error);
+                reject(message);
+            });
+    });
+
+export const createArticleRequest = (params) =>
+    new Promise((resolve, reject) => {
+        HTTP_CLIENT.post("advices", params)
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((error) => {
+                const message = handlingErrors(error);
+                reject(message);
+            });
+    });
+
+
+// get adivce by user
+export const getAdviceByUserRequest = (params) =>
+    new Promise((resolve, reject) => {
+        HTTP_CLIENT.get("advices/by-user", { params })
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((error) => {
+                const message = handlingErrors(error);
+                reject(message);
+            });
+    });

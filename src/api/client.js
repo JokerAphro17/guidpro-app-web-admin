@@ -1,7 +1,7 @@
 import axios   from "axios";
 import HANDLER_STORAGE from "../data";
 import {USER_SESSION} from "../utils/constants";
-export const BASE_URL = "http://192.168.1.67:9000/api";
+export const BASE_URL = "http://192.168.1.110:9000/api";
 
 
 const apiClient = axios.create({

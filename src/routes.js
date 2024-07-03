@@ -49,6 +49,14 @@ import PieChart from "@material-ui/icons/PieChart";
 import Toc from "@material-ui/icons/Toc";
 import WidgetsIcon from "@material-ui/icons/Widgets";
 import ArticleList from "views/artciles/ArticleList";
+import NewArticle from "views/artciles/NewArticle";
+
+
+    
+
+
+
+
 
 var routes = [
   {
@@ -88,6 +96,11 @@ var routes = [
         component: ArticleList,
         layout: "/admin",
       },  
+      {
+        path: "/article/new",
+        layout: "/admin",
+        component: NewArticle,
+      }
 
     ],
   },

@@ -15,6 +15,7 @@ import Sidebar from "components/Sidebar/Sidebar.js";
 import routes from "routes.js";
 
 import componentStyles from "assets/theme/layouts/admin.js";
+import NewArticle from "views/artciles/NewArticle";
 
 const useStyles = makeStyles(componentStyles);
 
@@ -51,11 +52,32 @@ const Admin = () => {
       }
     });
   };
+
+  const getRoutesForSidebar = (routes) => {
+    return routes.map((route) => {
+      if (route.collapse) {
+        // Recursively process nested views and remove null values
+        route.views = getRoutesForSidebar(route.views).filter(view => view !== null);
+        return route;
+      }
+      if (route.name && route.layout === "/admin") {
+        return route;
+      } else {
+        return null;
+      }
+    }).filter(route => route !== null); // Filter out null values from the top-level array
+  };
+  
+  // Example usage
+  
+  
+
+
   return (
     <>
       <Box display="flex">
         <Sidebar
-          routes={routes}
+          routes={getRoutesForSidebar(routes)}
           openResponsive={sidebarOpenResponsive}
           closeSidebarResponsive={() => setSidebarOpenResponsive(false)}
           logo={{
@@ -76,6 +98,7 @@ const Admin = () => {
           )}
           <Switch>
             {getRoutes(routes)}
+            <Route path="/admin/article/new" component={NewArticle} />
             <Redirect from="*" to="/admin/dashboard" />
           </Switch>
           <Container
