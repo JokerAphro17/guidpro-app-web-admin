@@ -11,14 +11,17 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as yup from "yup";
 import 'react-quill/dist/quill.snow.css';
 import SectionForm from "./SectionForm";
+import { getArticleRequest } from "api/request";
 const useStyles = makeStyles(componentStyles);
 
 
 
-const ArticleForm = ({article}) => {
+const ArticleForm = ({articleId}) => {
   
     const classes = useStyles();
     const history = useHistory();
+    const [article, setArticle] = React.useState({}); // [1
+    const [open, setOpen] = React.useState(false);
     const [domains, setDomains] = React.useState([]); // [1]
     const [formError, setFormError] = React.useState({
         title: "",
@@ -52,6 +55,32 @@ const formik = useFormik({
     }
 });
 
+React.useEffect(() => {
+    if (articleId) {
+        fecchArticle(articleId);
+    }
+}
+, [articleId]);
+
+
+const fecchArticle = async (id) => {
+    try {
+        const response = await getArticleRequest(id);
+        const data = response.data;
+        const article = data.data;
+        setArticle(article);
+        formik.setValues({
+            title: article.title,
+            budget: article.budget,
+            description: article.description,
+            domainId: article.domain?.id,
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
 
 const handleSubmit = async (values) => {
     try {
@@ -61,14 +90,32 @@ const handleSubmit = async (values) => {
             description: "",
         });
         alertPending();
-        const response = await createArticleRequest(values);
-        alertClosed();
-        alertNotification("success", "Article créé avec succès");
-        // wait for 2 seconds
-        setTimeout(() => {
-        history.push("/admin/articles");
+        if (article?.id) {
+            //update article
+            const response = await updateArticleRequest(articleId, values);
+             alertClosed();
+             alertNotification("success", "Article mis à jour avec succès");
+             const data = response.data;
+              const article = data?.data;
+              setArticle(article);
+              formik.setValues({
+                  title: article.title,
+                  budget: article.budget,
+                  description: article.description,
+                  domainId: article.domain?.id,
+              });
+
+            
+            return;
+        } else {  
+            //create article
+            const response = await createArticleRequest(values);
+            alertClosed();
+            alertNotification("success", "Article créé avec succès");
+            history.push("/admin/articles");
         }
-        , 2000);
+
+       
     
     } catch (error) {
         console.log(error);
@@ -253,7 +300,7 @@ console.log("formik", formik.values);
            
           </CardContent>
         </Card>
-        
+        { article?.id && <Card classes={{ root: classes.cardRoot }}>
         <SectionForm article={article}  onAdd={handleAdd} />
 
       {sections.map((section, index) => (
@@ -285,6 +332,7 @@ console.log("formik", formik.values);
           </CardContent>
         </Card>
       ))}
+      </Card> }
 
         </>
 

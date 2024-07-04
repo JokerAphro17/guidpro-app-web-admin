@@ -29,10 +29,10 @@ const ArticleEdit = () => {
             component={Box}
             marginTop="-4.5rem"
             classes={{ root: classes.containerRoot }}
-             >
+             >  
               
                    
-                        <ArticleForm  article={article} />
+                        <ArticleForm  articleId={article.id}  />
            
             </Container>
         </>

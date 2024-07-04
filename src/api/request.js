@@ -41,6 +41,19 @@ export const getArticlesRequest = (params) =>
             });
     });
 
+
+export const showArticleRequest = (id) =>
+    new Promise((resolve, reject) => {
+        HTTP_CLIENT.get(`advices/${id}`)
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((error) => {
+                const message = handlingErrors(error);
+                reject(message);
+            });
+    });
+    
 export const getArticleRequest = (id) =>
     new Promise((resolve, reject) => {
         HTTP_CLIENT.get(`advices/${id}`)
@@ -64,6 +77,19 @@ export const createArticleRequest = (params) =>
                 reject(message);
             });
     });
+
+export const updateArticleRequest = (id, params) =>
+    new Promise((resolve, reject) => {
+        HTTP_CLIENT.put(`advices/${id}`, params)
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((error) => {
+                const message = handlingErrors(error);
+                reject(message);
+            });
+    });
+
 
 
 // get adivce by user
@@ -91,6 +117,19 @@ export const addSectionRequest = (adviceId, data) =>
                 reject(message);
             });
     });
+// update section
+export const updateSectionRequest = (sectionId, data) =>
+    new Promise((resolve, reject) => {
+        HTTP_CLIENT.put("advices/sections/" + sectionId, data)
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((error) => {
+                const message = handlingErrors(error);
+                reject(message);
+            });
+    }
+    );
 
 
 
