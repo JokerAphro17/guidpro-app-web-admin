@@ -19,12 +19,17 @@ const ArticleList = () => {
     const columns = [
     {
         name: "N°",
-        selector: row => row.id,
+        selector: row => row.index,
         sortable: true,
     },
     {
         name: "Titre",
         selector: row => row.title,
+        sortable: true,
+    },
+    {
+        name: "Domaine",
+        selector: row => row.domain.name,
         sortable: true,
     },
    
@@ -58,11 +63,16 @@ const ArticleList = () => {
     const handleNew = () => {
         history.push("/admin/article/new");
     }
-
+    
     useEffect(() => {
         fetchArticles();
     }
     , []);
+
+    const onClicRow = (row) => {
+        history.push(`/admin/article-edit/${row.id}`, { article: row });
+    }
+
 
     const fetchArticles = async () => {
         alertPending("Chargement des articles", "Veuillez patienter...");
@@ -76,7 +86,7 @@ const ArticleList = () => {
             const articlesWithIndex = articles.map((article, index) => {
                 return {
                     ...article,
-                    id: index + 1
+                    index: index + 1
                 }
             });
             // sort articles by created_at
@@ -95,6 +105,8 @@ const ArticleList = () => {
     }
 
 
+    
+
    
 
 
@@ -111,6 +123,9 @@ const ArticleList = () => {
         >
         <DataTable
             title="Articles"
+            onRowClicked={onClicRow}
+            pointerOnHover
+            highlightOnHover
             columns={columns}
             data={articles}
             pagination

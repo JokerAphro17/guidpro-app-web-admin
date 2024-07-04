@@ -16,6 +16,7 @@ import routes from "routes.js";
 
 import componentStyles from "assets/theme/layouts/admin.js";
 import NewArticle from "views/artciles/NewArticle";
+import ArticleEdit from "views/artciles/articleEdit";
 
 const useStyles = makeStyles(componentStyles);
 
@@ -99,6 +100,7 @@ const Admin = () => {
           <Switch>
             {getRoutes(routes)}
             <Route path="/admin/article/new" component={NewArticle} />
+            <Route path="/admin/article-edit/:id" component={ArticleEdit} />
             <Redirect from="*" to="/admin/dashboard" />
           </Switch>
           <Container

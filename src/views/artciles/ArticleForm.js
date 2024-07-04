@@ -1,40 +1,54 @@
-import { Card, CardContent, CardHeader,Button, FormGroup,Box, FormLabel, Grid, OutlinedInput, makeStyles, FormHelperText } from "@material-ui/core"
+import { Card, CardContent, CardHeader,Button, FormGroup,Box, FormLabel, Grid, OutlinedInput, makeStyles, FormHelperText, Select } from "@material-ui/core"
+import { getDomainsRequest } from "api/request";
 import { createArticleRequest } from "api/request";
 import componentStyles from "assets/theme/views";
 import { alertNotification } from "components/alert";
 import { alertClosed } from "components/alert";
 import { alertPending } from "components/alert";
 import { useFormik } from "formik";
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as yup from "yup";
+import 'react-quill/dist/quill.snow.css';
+import SectionForm from "./SectionForm";
 const useStyles = makeStyles(componentStyles);
 
 
-const ArticleForm = () => {
+
+const ArticleForm = ({article}) => {
+  
     const classes = useStyles();
     const history = useHistory();
+    const [domains, setDomains] = React.useState([]); // [1]
     const [formError, setFormError] = React.useState({
         title: "",
         budget: "",
         description: "",
+        domainId  : "",
     });
     
     const validationSchema = yup.object({
         title: yup.string().required("Le titre est obligatoire"),
         budget: yup.number().required("Le budget est obligatoire, il peut être  0"),
         description: yup.string().required("La description est obligatoire"),
+        domainId: yup.string().required("Le domaine est obligatoire"),
 });
 
 const formik = useFormik({
     initialValues: {
-        title: "",
-        budget: "",
-        description: "",
+        title: article?.title || "",
+        budget: article?.budget || "",
+        description: article?.description || "",
+        domainId: article?.domainId || "",
     },
     validationSchema: validationSchema,
+    enableReinitialize: true,
     onSubmit: (values) => {
+      if(article?.id){
+        
+      }else{
         handleSubmit(values);
+      }
     }
 });
 
@@ -73,11 +87,49 @@ const handleSubmit = async (values) => {
     }
 }
 
+const fecthDomains = async () => {
+    try {
+        const response = await getDomainsRequest();
+        const data = response.data;
+        const domains = data.data;
+        const domainOptions = domains.map((domain) => {
+            return {
+                value: domain.id,
+                label: domain.name,
+            };
+        }
+        );
+        setDomains(domainOptions);
+    } catch (error) {
+        console.log(error);
+    }
 
+}
+
+React.useEffect(() => {
+    fecthDomains();
+}
+, []);
+const [sections, setSections] = React.useState([]);
+
+const handleAdd = (section) => {
+    setSections([...sections, section]);
+}
+
+useEffect(() => {
+    if (article?.sections.length > 0) {
+        setSections(article.sections);
+    }
+}
+, [article]);
+
+console.log("domains", domains);
+console.log("formik", formik.values);
 
 
 
     return (
+       <>
        
         <Card classes={{ root: classes.cardRoot }}>
           <CardHeader
@@ -132,12 +184,28 @@ const handleSubmit = async (values) => {
               </Grid>
               <Grid item xs={12} md={4}> 
                 <FormGroup>
-                  <FormLabel>Image de couverture</FormLabel>
-                  <OutlinedInput
-                    fullWidth
-                    type="file"
-                   
-                  />
+                  <FormLabel>Categorie</FormLabel>
+                  <Select fullWidth
+                    native
+                    name="domainId"
+                    onChange={formik.handleChange}
+                    
+                    value={formik.values.domainId}
+                    error={formError.domainId || formik.errors.domainId}
+                  >
+                    {domains.map((domain) => (
+                      <option key={domain.value} value={domain.value}>
+                        {domain.label}
+                      </option>
+                    ))}
+                  </Select>
+                  {formError.domainId || formik.errors.domainId ? (
+                    <FormHelperText error>
+                      {formError.domainId || formik.errors.domainId}
+                    </FormHelperText>
+                  ) : null}
+
+
                 </FormGroup>
               </Grid>
             </Grid>
@@ -185,6 +253,42 @@ const handleSubmit = async (values) => {
            
           </CardContent>
         </Card>
+        
+        <SectionForm article={article}  onAdd={handleAdd} />
+
+      {sections.map((section, index) => (
+        <Card classes={{ root: classes.cardRoot }} key={index}>
+          <CardHeader
+            className={classes.cardHeader}
+            title={section.title}
+            titleTypographyProps={{
+              component: Box,
+              marginBottom: "0!important",
+              variant: "h3",
+            }}
+          ></CardHeader>
+          <CardContent>
+            <Box
+              component="span"
+              color="gray"
+              className={classes.cardSubTitle}
+            >
+              {section.description}
+            </Box>
+            <Box
+              component="span"
+              color="gray"
+              className={classes.cardSubTitle}
+            >
+              <div dangerouslySetInnerHTML={{ __html: section.content }}></div>
+            </Box>
+          </CardContent>
+        </Card>
+      ))}
+
+        </>
+
+
     )
 }
 

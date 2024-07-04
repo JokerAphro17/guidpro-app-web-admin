@@ -60,6 +60,7 @@
     "react-dom": "17.0.1",
     "react-jvectormap": "0.0.16",
     "react-perfect-scrollbar": "1.5.8",
+    "react-quill": "^2.0.0",
     "react-router-dom": "5.2.0",
     "react-scripts": "4.0.3",
     "react-to-print": "2.12.3",

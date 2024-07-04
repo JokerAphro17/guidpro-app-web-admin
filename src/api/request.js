@@ -78,3 +78,37 @@ export const getAdviceByUserRequest = (params) =>
                 reject(message);
             });
     });
+
+    // add section to artcile 
+export const addSectionRequest = (adviceId, data) =>
+    new Promise((resolve, reject) => {
+        HTTP_CLIENT.post("advices/" + adviceId + "/sections", data)
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((error) => {
+                const message = handlingErrors(error);
+                reject(message);
+            });
+    });
+
+
+
+
+
+
+
+
+
+    // domains requests
+    export const getDomainsRequest = (params) =>
+    new Promise((resolve, reject) => {
+        HTTP_CLIENT.get("domains", { params })
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((error) => {
+                const message = handlingErrors(error);
+                reject(message);
+            });
+    });
