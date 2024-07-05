@@ -17,3 +17,30 @@ export const resolveStatus = (status) => {
             return "En attente";
     }
 }
+
+
+export const resolveArticleStatus = (status) => {
+    switch (status) {
+        case "PENDING":
+            return "En attente";
+        case "PUBLISHED":
+            return "Publié";
+        case "ARCHIVED":
+            return "Archivé";
+        default:
+            return "En attente";
+    }
+}
+
+export const resolveArticleColor = (status) => {
+    switch (status) {
+        case "PENDING":
+            return "warning";
+        case "PUBLISHED":
+            return "success";
+        case "ARCHIVED":
+            return "danger";
+        default:
+            return "warning";
+    }
+}

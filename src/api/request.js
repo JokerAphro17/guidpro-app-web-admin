@@ -53,7 +53,7 @@ export const showArticleRequest = (id) =>
                 reject(message);
             });
     });
-    
+
 export const getArticleRequest = (id) =>
     new Promise((resolve, reject) => {
         HTTP_CLIENT.get(`advices/${id}`)
@@ -105,6 +105,32 @@ export const getAdviceByUserRequest = (params) =>
             });
     });
 
+    // publish article
+export const publishArticleRequest = (id) =>
+    new Promise((resolve, reject) => {
+        HTTP_CLIENT.put(`advices/${id}/publish`)
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((error) => {
+                const message = handlingErrors(error);
+                reject(message);
+            });
+    });
+
+    // unpublish article
+export const unpublishArticleRequest = (id) =>
+    new Promise((resolve, reject) => {
+        HTTP_CLIENT.put(`advices/${id}/unpublish`)
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((error) => {
+                const message = handlingErrors(error);
+                reject(message);
+            });
+    });
+
     // add section to artcile 
 export const addSectionRequest = (adviceId, data) =>
     new Promise((resolve, reject) => {
@@ -130,6 +156,9 @@ export const updateSectionRequest = (sectionId, data) =>
             });
     }
     );
+
+// delete section
+
 
 
 

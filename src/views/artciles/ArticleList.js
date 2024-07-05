@@ -70,7 +70,7 @@ const ArticleList = () => {
     , []);
 
     const onClicRow = (row) => {
-        history.push(`/admin/article-edit/${row.id}`, { article: row });
+        history.push(`/admin/article-edit/${row.id}`, { articleId: row.id });
     }
 
 

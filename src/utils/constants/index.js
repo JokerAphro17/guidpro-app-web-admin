@@ -7,3 +7,9 @@ export const ROLES = {
     USER: "user",
     ALL: "all"
 };
+
+export const ARTICLE_STATUS = {
+    PENDING: "PENDING",
+    PUBLISHED: "PUBLISHED",
+    ARCHIVED: "ARCHIVED",
+};

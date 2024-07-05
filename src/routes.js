@@ -50,6 +50,7 @@ import Toc from "@material-ui/icons/Toc";
 import WidgetsIcon from "@material-ui/icons/Widgets";
 import ArticleList from "views/artciles/ArticleList";
 import NewArticle from "views/artciles/NewArticle";
+import SectionEdit from "views/artciles/SectionEdit";
 
 
     
@@ -100,6 +101,12 @@ var routes = [
         path: "/article/new",
         layout: "/admin",
         component: NewArticle,
+      },
+      {
+        path: "/section-edit",
+        layout: "/admin",
+        component: SectionEdit,
+
       }
 
     ],

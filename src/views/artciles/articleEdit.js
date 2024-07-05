@@ -12,8 +12,8 @@ const ArticleEdit = () => {
     const history = useHistory();
     // get the article id from state
     const location = useLocation();
-    const {article} = location.state;
-    console.log(article);
+    const {articleId} = location.state;
+    console.log(articleId);
     const back = () => {
         history.push("/admin/articles");
     }
@@ -32,7 +32,7 @@ const ArticleEdit = () => {
              >  
               
                    
-                        <ArticleForm  articleId={article.id}  />
+                        <ArticleForm  articleId={articleId}  />
            
             </Container>
         </>
