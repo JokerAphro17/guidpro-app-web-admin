@@ -3,13 +3,13 @@ const componentStyles = (theme) => ({
     backgroundSize: "cover",
     backgroundPosition: "center top",
     backgroundImage:
-      "url(" + require("assets/img/theme/profile-cover.jpg").default + ")",
+      "url(" + require("assets/img/image.png").default + ")",
   },
   overlayBox: {
     transition: "all .15s ease",
-    opacity: ".9",
+    opacity: ".5",
     background:
-      "linear-gradient(87deg," + theme.palette.info.main + ",#1171ef)",
+      "linear-gradient(87deg," + theme.palette.info.main + ",#11715e)",
   },
   containerRoot: {
     zIndex: 1,

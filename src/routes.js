@@ -85,8 +85,8 @@ var routes = [
   },
   {
     collapse: true,
-    name: "Articles",
-    icon: House,
+    name: "Conseils",
+    icon: PermMedia,
     iconColor: "Primary",
     state: "articlesCollapse",
     views: [

@@ -27,10 +27,20 @@ const AuthProvider = ({ children }) => {
         }
         window.location.href = "/auth/login";
     };
+
+
+    const authGate = {
+        isAdmin : user?.role === "ADMIN",
+        isNovice : user?.role === "NOVICE",
+        isExpert : user?.role === "EXPERT",
+    };
+
+
     const value = {
         user,
         signin,
         signout,
+        authGate,
     };
 
 

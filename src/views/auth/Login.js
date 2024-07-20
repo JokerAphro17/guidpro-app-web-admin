@@ -6,11 +6,9 @@ import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import Checkbox from "@material-ui/core/Checkbox";
 import Container from "@material-ui/core/Container";
 import FilledInput from "@material-ui/core/FilledInput";
 import FormControl from "@material-ui/core/FormControl";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
 import InputAdornment from "@material-ui/core/InputAdornment";
 // @material-ui/icons components
@@ -186,6 +184,17 @@ function Login() {
                 }
               ></CardHeader> */}
               <CardContent classes={{ root: classes.cardContent }}>
+                <div className="row justify-content-center">
+              <Box
+                alt="..."
+                height="50px"
+                component="img"
+                marginRight="1rem"
+
+                className={classes.headerImg}
+                src={require("assets/img/logo/logo-nom-2.png").default}
+              />
+              </div>
                 <Box
                   color={theme.palette.gray[600]}
                   textAlign="center"
@@ -242,16 +251,7 @@ function Login() {
                     }
                   />
                 </FormControl>
-                <FormControlLabel
-                  value="end"
-                  control={<Checkbox color="primary" />}
-                  label="Remember me"
-                  labelPlacement="end"
-                  classes={{
-                    root: classes.formControlLabelRoot,
-                    label: classes.formControlLabelLabel,
-                  }}
-                />
+               
                 <Box
                   textAlign="center"
                   marginTop="1.5rem"

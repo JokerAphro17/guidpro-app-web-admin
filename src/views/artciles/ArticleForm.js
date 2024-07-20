@@ -29,7 +29,7 @@ const useStyles = makeStyles(componentStyles);
 
 
 
-const ArticleForm = ({articleId}) => {
+const ArticleForm = ({articleId, setCoverUrl}) => {
   
     const classes = useStyles();
     const history = useHistory();
@@ -85,7 +85,9 @@ const fecchArticle = async (id) => {
         const response = await getArticleRequest(id);
         const data = response.data;
         const article = data.data;
+
         setArticle(article);
+        setCoverUrl(article.coverUrl);
         formik.setValues({
             title: article.title,
             budget: article.budget,

@@ -180,14 +180,15 @@ export default function AuthNavbar() {
             component={Box}
             maxWidth="xl"
           >
-            <Box display="flex" justifyContent="center" alignItems="center">
+            <Box display="flex" justifyContent="center" alignItems="center" >
               <Box
                 alt="..."
                 height="30px"
                 component="img"
                 marginRight="1rem"
+                style={{backgroundColor: "white",  padding: "5px"}}
                 className={classes.headerImg}
-                src={require("assets/img/logo/logo-nom.png").default}
+                src={require("assets/img/logo/logo-nom-2.png").default}
               />
               <Hidden mdDown implementation="css">
                 {ListLeftObject}

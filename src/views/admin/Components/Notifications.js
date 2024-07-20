@@ -9,7 +9,6 @@ import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
-import Checkbox from "@material-ui/core/Checkbox";
 import Container from "@material-ui/core/Container";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -17,7 +16,6 @@ import DialogContent from "@material-ui/core/DialogContent";
 import Fade from "@material-ui/core/Fade";
 import FilledInput from "@material-ui/core/FilledInput";
 import FormControl from "@material-ui/core/FormControl";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -944,16 +942,7 @@ const NotificationsView = () => {
                                 }
                               />
                             </FormControl>
-                            <FormControlLabel
-                              value="end"
-                              control={<Checkbox color="primary" />}
-                              label="Remember me"
-                              labelPlacement="end"
-                              classes={{
-                                root: classes.formControlLabelRoot,
-                                label: classes.formControlLabelLabel,
-                              }}
-                            />
+                            
                             <Box
                               textAlign="center"
                               marginTop="1.5rem"

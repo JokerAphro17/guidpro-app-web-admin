@@ -18,6 +18,7 @@ import componentStyles from "assets/theme/layouts/admin.js";
 import NewArticle from "views/artciles/NewArticle";
 import ArticleEdit from "views/artciles/articleEdit";
 import SectionEdit from "views/artciles/SectionEdit";
+import Profile from "views/admin/Examples/Profile";
 
 const useStyles = makeStyles(componentStyles);
 
@@ -71,6 +72,8 @@ const Admin = () => {
   };
   
   // Example usage
+
+  
   
   
 
@@ -84,7 +87,7 @@ const Admin = () => {
           closeSidebarResponsive={() => setSidebarOpenResponsive(false)}
           logo={{
             innerLink: "/index",
-            imgSrc: require("../assets/img/brand/argon-react.png").default,
+            imgSrc: require("assets/img/logo/logo-nom-2.png").default,
             imgAlt: "...",
           }}
         />
@@ -103,6 +106,7 @@ const Admin = () => {
             <Route path="/admin/article/new" component={NewArticle} />
             <Route path="/admin/article-edit/:id" component={ArticleEdit} />
             <Route path="/admin/section-edit" component={SectionEdit} />
+            <Route path="/admin/user-profile/:id" component={<Profile />} />
             <Redirect from="*" to="/admin/dashboard" />
           </Switch>
           <Container

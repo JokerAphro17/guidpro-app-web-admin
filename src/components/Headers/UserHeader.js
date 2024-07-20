@@ -14,7 +14,7 @@ import componentStyles from "assets/theme/components/headers/user-header.js";
 
 const useStyles = makeStyles(componentStyles);
 
-const UserHeader = () => {
+const UserHeader = ({user}) => {
   const classes = useStyles();
   const theme = useTheme();
   return (
@@ -48,7 +48,7 @@ const UserHeader = () => {
                 variant="h1"
                 classes={{ root: classes.typographyRootH1 }}
               >
-                Hello Jesse
+                Bonjour, {user?.firstName} {user?.lastName}
               </Typography>
               <Box
                 component="p"
@@ -57,8 +57,8 @@ const UserHeader = () => {
                 lineHeight="1.7"
                 fontSize="1rem"
               >
-                This is your profile page. You can see the progress you've made
-                with your work and manage your projects or assigned tasks
+                Ici, vous pouvez modifier votre profil, vos préférences et bien
+                plus encore.
               </Box>
               <Button
                 variant="contained"

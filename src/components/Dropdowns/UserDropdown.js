@@ -18,6 +18,7 @@ import Settings from "@material-ui/icons/Settings";
 // core components
 import componentStyles from "assets/theme/components/dropdowns/user-dropdown.js";
 import useAuth from "utils/hooks/useAuth";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const useStyles = makeStyles(componentStyles);
 
@@ -26,6 +27,7 @@ export default function UserDropdown() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
+  const history = useHistory();
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -70,8 +72,12 @@ export default function UserDropdown() {
           width="1.25rem!important"
           height="1.25rem!important"
           marginRight="1rem"
-        />
-        <span>Mon profile</span>
+          
+          />
+        <span onClick={() => history.push('/admin/user-profile/'+user?.id, {
+          id: user?.id
+        })}>
+          Mon profile</span>
       </Box>
       <Box
         display="flex!important"

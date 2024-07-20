@@ -7,6 +7,7 @@ export const BASE_URL = "http://192.168.1.69:9000/api";
 const apiClient = axios.create({
     baseURL: BASE_URL,
     withCredentials: false,
+    timeout: 10000,
     headers: {
         Accept: "application/json",
         "Content-Type": "application/json",

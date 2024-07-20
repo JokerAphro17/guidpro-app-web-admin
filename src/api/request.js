@@ -80,7 +80,11 @@ export const createArticleRequest = (params) =>
 
 export const updateArticleRequest = (id, params) =>
     new Promise((resolve, reject) => {
-        HTTP_CLIENT.put(`advices/${id}`, params)
+        HTTP_CLIENT.put(`advices/${id}`, params, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        })
             .then((response) => {
                 resolve(response);
             })
@@ -131,6 +135,23 @@ export const unpublishArticleRequest = (id) =>
             });
     });
 
+
+    // cover
+export const uploadCoverRequest = (id, data) =>
+    new Promise((resolve, reject) => {
+        HTTP_CLIENT.put(`advices/${id}/cover`, data, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        })
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((error) => {
+                const message = handlingErrors(error);
+                reject(message);
+            });
+    });
     // add section to artcile 
 export const addSectionRequest = (adviceId, data) =>
     new Promise((resolve, reject) => {
@@ -172,6 +193,45 @@ export const updateSectionRequest = (sectionId, data) =>
     export const getDomainsRequest = (params) =>
     new Promise((resolve, reject) => {
         HTTP_CLIENT.get("domains", { params })
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((error) => {
+                const message = handlingErrors(error);
+                reject(message);
+            });
+    });
+
+
+    // user management
+
+    export const getUsersRequest = (params) =>
+    new Promise((resolve, reject) => {
+        HTTP_CLIENT.get("users", { params })
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((error) => {
+                const message = handlingErrors(error);
+                reject(message);
+            });
+    });
+
+    export const getUserRequest = (id) =>
+    new Promise((resolve, reject) => {
+        HTTP_CLIENT.get(`users/${id}`)
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((error) => {
+                const message = handlingErrors(error);
+                reject(message);
+            });
+    });
+
+    export const updateUserRequest = (id, data) =>
+    new Promise((resolve, reject) => {
+        HTTP_CLIENT.put(`users/${id}`, data)
             .then((response) => {
                 resolve(response);
             })
