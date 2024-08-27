@@ -298,7 +298,7 @@ let chartExample1 = {
           ticks: {
             callback: function (value) {
               if (!(value % 10)) {
-                return "$" + value + "k";
+                return "" + value + "00";
               }
             },
           },
@@ -316,7 +316,7 @@ let chartExample1 = {
             content += label;
           }
 
-          content += "$" + yLabel + "k";
+          content += "" + yLabel + "k";
           return content;
         },
       },
@@ -328,7 +328,7 @@ let chartExample1 = {
       datasets: [
         {
           label: "Performance",
-          data: [0, 20, 10, 30, 15, 40, 20, 60, 60],
+          data:  [0, 34, 12, 40, 0, 0, 0, 0],
         },
       ],
     };
@@ -339,7 +339,7 @@ let chartExample1 = {
       datasets: [
         {
           label: "Performance",
-          data: [0, 20, 5, 25, 10, 30, 15, 40, 40],
+          data: [0, 34, 12, 40, 0, 0, 0, 0],
         },
       ],
     };
@@ -414,7 +414,7 @@ let chartExample3 = {
     datasets: [
       {
         label: "Performance",
-        data: [0, 20, 10, 30, 15, 40, 20, 60, 60],
+        data: [0, 34, 12, 40, 0, 0, 0, 0],
       },
     ],
   },
@@ -440,7 +440,7 @@ const chartExample4 = {
     datasets: [
       {
         label: "Performance",
-        data: [10, 18, 28, 23, 28, 40, 36, 46, 52],
+        data: [0, 34, 12, 40, 0, 0, 0, 0],
         pointRadius: 10,
         pointHoverRadius: 15,
         showLine: false,
@@ -634,7 +634,7 @@ let chartExample8 = {
       datasets: [
         {
           label: "Performance",
-          data: [0, 20, 10, 30, 15, 40, 20, 60, 60],
+          data: [12, 324, 335, 5045, 0, 0, 0, 0, 0],
         },
       ],
     };

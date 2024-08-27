@@ -35,7 +35,7 @@ function CardTotalOrders() {
               Performane
             </Box>
           }
-          subheader="Total orders"
+          subheader="Conseils poubliés"
           classes={{ root: classes.cardHeaderRoot }}
           titleTypographyProps={{
             component: Box,

@@ -94,7 +94,7 @@ const Header = ({ section, subsection }) => {
                 size="small"
                 className={classes.buttonRoot}
               >
-                Filters
+                
               </Button>
             </Grid>
           </Grid>

@@ -7,7 +7,6 @@ import { Line } from "react-chartjs-2";
 import { makeStyles } from "@material-ui/core/styles";
 import { useTheme } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
-import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -61,7 +60,7 @@ function CardSalesValue() {
                   className={classes.textUppercase}
                 >
                   <Box component="span" color={theme.palette.gray[400]}>
-                    Overview
+                    Vue d'ensemble
                   </Box>
                 </Box>
                 <Box
@@ -70,36 +69,11 @@ function CardSalesValue() {
                   marginBottom="0!important"
                 >
                   <Box component="span" color={theme.palette.white.main}>
-                    Sales value
+                    Visiteur uniques
                   </Box>
                 </Box>
               </Grid>
-              <Grid item xs="auto">
-                <Box justifyContent="flex-end" display="flex" flexWrap="wrap">
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    component={Box}
-                    marginRight="1rem!important"
-                    onClick={() => toggleNavs(1)}
-                    classes={{
-                      root: activeNav === 1 ? "" : classes.buttonRootUnselected,
-                    }}
-                  >
-                    Month
-                  </Button>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => toggleNavs(2)}
-                    classes={{
-                      root: activeNav === 2 ? "" : classes.buttonRootUnselected,
-                    }}
-                  >
-                    Week
-                  </Button>
-                </Box>
-              </Grid>
+             
             </Grid>
           }
           classes={{ root: classes.cardHeaderRoot }}

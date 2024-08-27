@@ -52,7 +52,7 @@ const ArticleForm = ({articleId, setCoverUrl}) => {
     const validationSchema = yup.object({
         title: yup.string().required("Le titre est obligatoire"),
         budget: yup.number().required("Le budget est obligatoire, il peut être  0"),
-        description: yup.string().required("La description est obligatoire"),
+        description: yup.string().required("La description est obligatoire").max(255, "La description ne doit pas dépasser 255 caractères"),
         domainId: yup.string().required("Le domaine est obligatoire"),
 });
 

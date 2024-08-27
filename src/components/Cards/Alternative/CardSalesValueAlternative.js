@@ -36,10 +36,10 @@ function CardSalesValueAlternative() {
         <CardHeader
           title={
             <Box component="span" color={theme.palette.gray[600]}>
-              Overview
+              Vue d'ensemble
             </Box>
           }
-          subheader="Sales value"
+          subheader="Visiteurs uniques"
           classes={{ root: classes.cardHeaderRoot }}
           titleTypographyProps={{
             component: Box,

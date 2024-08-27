@@ -82,7 +82,7 @@ export const updateArticleRequest = (id, params) =>
     new Promise((resolve, reject) => {
         HTTP_CLIENT.put(`advices/${id}`, params, {
             headers: {
-                "Content-Type": "multipart/form-data",
+                "Content-Type": "application/json",
             },
         })
             .then((response) => {
@@ -205,9 +205,9 @@ export const updateSectionRequest = (sectionId, data) =>
 
     // user management
 
-    export const getUsersRequest = (params) =>
+    export const getUsersRequest = (type) =>
     new Promise((resolve, reject) => {
-        HTTP_CLIENT.get("users", { params })
+        HTTP_CLIENT.get("users?type=" + type)
             .then((response) => {
                 resolve(response);
             })

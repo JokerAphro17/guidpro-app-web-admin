@@ -70,4 +70,4 @@ export const formatPropValueToString = (error, objectMessage = {}) => {
     }
 };
 
-export default apiClient ;  
+export default apiClient;
